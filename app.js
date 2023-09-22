@@ -5,7 +5,7 @@ const express = require('express');
 // el webserver se le asigne al archivo app.js
 const app = express();
 // importar el paquete de handlerbars
-app.set('view engine', 'html');
+app.set('view engine', 'hbs');
 var hbs = require('hbs');
 // importar el paquete de dotenv
 require('dotenv').config();
@@ -18,6 +18,17 @@ app.use(express.static('public'));
 hbs.registerPartials(__dirname + '/views/partials');
 
 // consultar las páginas en el webserver se utiliza el get, una función de flecha
+app.get('/', (req, res) => {
+    // utilizar el res, para responder a la petición del usuario
+    res.render('home',  {
+        nombre: 'Nodejs',
+        titulo: 'Site de música'
+    });
+    
+
+})
+
+
 
 app.get('/left-sidebar', (req, res) => {
     // utilizar el res, para responder a la petición del usuario
