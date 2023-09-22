@@ -4,15 +4,18 @@ para crear un webserver en un entorno local
 const express = require('express');
 // el webserver se le asigne al archivo app.js
 const app = express();
-// const port = 9596;
-
+// importar el paquete de handlerbars
+app.set('view engine', 'html');
+var hbs = require('hbs');
 // importar el paquete de dotenv
 require('dotenv').config();
  const port = process.env.PORT;
 
-
 // mostrar contenido de la carpeta public
 app.use(express.static('public'));
+
+// llamar el paquete handlerbars
+hbs.registerPartials(__dirname + '/views/partials');
 
 // consultar las páginas en el webserver se utiliza el get, una función de flecha
 
